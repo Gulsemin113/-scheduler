@@ -7,12 +7,14 @@ export default function Form(props) {
   const [name, setName] = useState(props.student || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
 
-  /*When the user clicks the Cancel button, we clear the form values. */
+  /*When the user clicks the Cancel button,
+   we clear the form values. */
+
   const reset = () => {
     setName("");
     setInterviewer(null);
   };
- 
+
   /*
     when the user clicks the cancel button
     the form resets
@@ -25,7 +27,7 @@ export default function Form(props) {
   return (
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">
-        <form autoComplete="off">
+        <form autoComplete="off"onSubmit={event => event.preventDefault()} >
           <input
             className="appointment__create-input text--semi-bold"
             name="name"
