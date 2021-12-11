@@ -16,7 +16,13 @@ export default function useVisualMode(initial) {
         return [...history, newMode];
       }
     });
+
+    
   };
 
-  return { mode, transition };
+  const back = () => {
+
+  }
+
+  return { mode, transition, back };
 }
