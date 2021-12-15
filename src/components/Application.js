@@ -1,73 +1,27 @@
-import React, { useState, useEffect } from "react";
-import "components/Application.scss";
-import DayList from "./DayList";
-import Appointment from "./ Appointment";
-import axios from "axios";
+import React from "react";
+
+import DayList from "components/DayList";
+import Appointment from "../components/ Appointment";
 import {
   getAppointmentsForDay,
-  getInterview,
   getInterviewersForDay,
+  getInterview,
 } from "helpers/selectors";
+import useApplicationData from "../hooks/useApplicationData";
+
+import "components/Application.scss";
 
 export default function Application(props) {
-  const [state, setState] = useState({
-    day: "Monday",
-    days: [],
-    appointments: {},
-    interviewers: {},
-  });
-  const setDay = (day) => setState({ ...state, day });
+  const { state, setDay, bookInterview, cancelInterview } =
+    useApplicationData();
 
-  useEffect(() => {
-    Promise.all([
-      axios.get("/api/days"),
-      axios.get("/api/appointments"),
-      axios.get("/api/interviewers"),
-    ]).then((all) => {
-      setState((state) => ({
-        ...state,
-        days: all[0].data,
-        appointments: all[1].data,
-        interviewers: all[2].data,
-      }));
-    });
-  }, []);
-
-  function bookInterview(id, interview) {
-    const appointment = {
-      ...state.appointments[id],
-      interview: { ...interview }
-    };
-
-    const appointments = {
-      ...state.appointments,
-      [id]: appointment
-    }
-    return axios.get(`/api/appointments/${id}`, {interview})
-    .then(response => setState(state => ({ ...state, appointments })));
-  }
-
-  function cancelInterview(id) {
-    const appointment = {
-      ...state.appointments[id],
-      interview: null
-    }
-
-    const appointments = {
-      ...state.appointments,
-      [id]: appointment
-    }
-
-    return axios.delete(`/api/appointments/${id}`)
-      .then(response => setState(state => ({ ...state, appointments })));
-  }
-
-
-
+  // gets the appointments and interviewers for the selected day
   const appointmentsForDay = getAppointmentsForDay(state, state.day);
   const interviewersForDay = getInterviewersForDay(state, state.day);
 
+  // creates the schedule for the day as an array of appointment components
   const schedule = appointmentsForDay.map((appointment) => {
+    // gets the interview for the current appointment slot
     const interview = getInterview(state, appointment.interview);
 
     return (
@@ -101,10 +55,11 @@ export default function Application(props) {
         />
       </section>
       <section className="schedule">
-        {schedule}
-        <Appointment id="last" time="5pm" />
+        <section className="schedule">
+          {schedule}
+          <Appointment key="last" time="5pm" />
+        </section>
       </section>
     </main>
   );
 }
-
