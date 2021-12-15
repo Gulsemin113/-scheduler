@@ -4,25 +4,6 @@
   file
 */
 export const getAppointmentsForDay = (state, day) => {
-  const dayObj = state.days.find((element) => element.name === day);
-
-  if (!dayObj) {
-    return [];
-  }
-  const interviewerIds = dayObj.interviewers;
-
-  const interviewersForDay = [];
-
-  for (const id in state.interviewers) {
-    if (interviewerIds.includes(Number(id))) {
-      interviewersForDay.push(state.appointments[id]);
-    }
-  }
-
-  return interviewersForDay;
-};
-
-export const getInterviewersForDay = (state, day) => {
   const dayObj = state.days.find((elem) => elem.name === day);
 
   if (!dayObj) {
@@ -40,6 +21,31 @@ export const getInterviewersForDay = (state, day) => {
   }
 
   return appointmentsForDay;
+};
+
+/*
+  returns array of interviewer objects for the current
+  selected day which will be used in Application.js
+  file
+*/
+export const getInterviewersForDay = (state, day) => {
+  const dayObj = state.days.find((elem) => elem.name === day);
+
+  if (!dayObj) {
+    return [];
+  }
+
+  const interviewerIds = dayObj.interviewers;
+
+  const interviewersForDay = [];
+
+  for (const id in state.interviewers) {
+    if (interviewerIds.includes(Number(id))) {
+      interviewersForDay.push(state.interviewers[id]);
+    }
+  }
+
+  return interviewersForDay;
 };
 
 /*
