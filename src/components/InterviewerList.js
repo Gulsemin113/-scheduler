@@ -14,14 +14,15 @@ export default function InterviewerList(props) {
             key={interviewer.id}
             name={interviewer.name}
             avatar={interviewer.avatar}
-            selected={interviewer.id === props.value}
             setInterviewer={(event) => props.onChange(interviewer.id)}
+            selected={interviewer.id === props.value}
           />
         ))}
       </ul>
     </section>
   );
 }
+
 // prop types is restricted to only specific data types
 InterviewerList.propTypes = {
   value: PropTypes.number,
