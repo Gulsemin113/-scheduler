@@ -1,7 +1,7 @@
 import React from "react";
 
 import DayList from "components/DayList";
-import Appointment from "../components/ Appointment";
+import Appointment from "./Appointment";
 import {
   getAppointmentsForDay,
   getInterviewersForDay,
