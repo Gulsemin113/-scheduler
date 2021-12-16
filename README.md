@@ -65,5 +65,5 @@ Single-page application built with React including hooks and functional componen
 
 ## Screenshots
 !["input-name"](https://github.com/Gulsemin113/scheduler/blob/master/docs/input.png)
-!["after-schedule"](https://github.com/kutluduman/scheduler/blob/master/docs/after-schedule.png?raw=true)
+!["after-schedule"](https://github.com/Gulsemin113/scheduler/blob/master/docs/input2.png)
 !["delete"](https://github.com/Gulsemin113/scheduler/blob/master/docs/delete.png)
