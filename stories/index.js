@@ -7,14 +7,14 @@ import Button from "components/Button";
 import DayList from "components/DayList";
 import InterviewerListItem from "components/InterviewerListItem";
 import InterviewerList from "components/InterviewerList";
-import Appointment from "../src/components/ Appointment/index";
-import Header from "../src/components/ Appointment/Header";
-import Empty from "../src/components/ Appointment/Empty";
-import Show from "../src/components/ Appointment/Show";
-import Confirm from "../src/components/ Appointment/Confirm";
-import Status from "../src/components/ Appointment/Status";
-import Error from "../src/components/ Appointment/Error";
-import Form from "../src/components/ Appointment/Form";
+import Appointment from "../src/components/Appointment/index";
+import Header from "../src/components/Appointment/Header";
+import Empty from "../src/components/Appointment/Empty";
+import Show from "../src/components/Appointment/Show";
+import Confirm from "../src/components/Appointment/Confirm";
+import Status from "../src/components/Appointment/Status";
+import Error from "../src/components/Appointment/Error";
+import Form from "../src/components/Appointment/Form";
 import React, { Fragment } from 'react'
 
 storiesOf("Button", module)
